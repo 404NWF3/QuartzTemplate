@@ -8,7 +8,7 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Quartz 4", // TO DO: Change this to your site title
+    pageTitle: "SUFE DS II", // TO DO: Change this to your site title
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
