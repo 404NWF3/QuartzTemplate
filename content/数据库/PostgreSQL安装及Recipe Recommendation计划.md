@@ -31,7 +31,7 @@
 3.  当提示 `Password for user postgres:` 时，输入刚才设置的密码（输入时不会显示字符），按 Enter。
 4.  如果出现 `postgres=#` 提示符，说明安装成功并已连接到数据库。
 
-![安装成功](asset\PostgreSQL\image.png)
+![[asset\PostgreSQL\image.png]]
 
 ---
 
@@ -70,4 +70,4 @@
 4.  点击编辑器上方的 **"Run"** 按钮 (或者使用快捷键，通常是 `Ctrl+Enter`)。
 5.  下方会显示查询结果。
 
-![image-1](asset\PostgreSQL\image-1.png)
+![[asset\PostgreSQL\image-1.png]]
