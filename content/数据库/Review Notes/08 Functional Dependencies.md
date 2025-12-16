@@ -102,3 +102,106 @@ $$X \to Y$$
 
 ---
 [[关系数据理论 习题]]
+
+---
+> 2022 填空题 6
+> 假设某商业集团数据库中有一关系变量R（商店编号，商店名称，商品编号，商品库存量）。如果规定：每个商店都有唯一的编号和名称，每个商店的每种商品只有一个库存量。关系变量R 的候选码是______________________，该关系变量R 属于第_________范式。
+
+**分析**：
+
+函数依赖有：
+- 商店编号 $\rightarrow$ 商店名称，
+- (商店编号,商品编号) $\rightarrow$ 商品库存，
+    *   $L$类：商店编号，商品编号
+    *   $R$类：商店名称，商品库存
+    *   $LR$ 类：空
+    *   $N$ 类：空
+**候选码：{商品编号，商店编号}**
+因为有 商店编号 $\rightarrow$ 商店名称，即商品库存部分依赖于主属性，所以是**第一范式**
+
+
+> 2022 填空题 9
+> 已知函数依赖集 $S=\{A \rightarrow B, B \rightarrow C, BC \rightarrow D, DA \rightarrow B\}$，请问 $A \rightarrow AD$ 成立吗？（是/否）。
+
+**分析**：
+只要满足属性 $A$ 关于函数依赖集 $S$ 的 **闭包** $A^+$ 中同时又 $A$ 和 $D$ 即可。
+$A^+ = {A,B,C,D}$，故$A \rightarrow AD$ 成立。
+
+> 2022 填空题 10
+> 给定关系变量 $R(A,B,C,D,E)$ ，函数依赖集 $S={A→B,A→C,CD→E}$ ，则该关系变量的候选码为______________________。
+
+**分析**：
+
+*   $L$类：$A, D$
+*   $R$类：$B,E$
+*   $LR$ 类：$C$
+*   $N$ 类：空
+
+又 $\{A,D\}^+=\{A, B, C, D\}$ 故候选码为 $AD$
+
+
+> 2022 填空题 11
+> 给定关系变量 $R(A,B,C,D,E,F,G)$，函数依赖集 $S=\{A \rightarrow B, C \rightarrow D, B \rightarrow E, E \rightarrow F\}$。求属性集 $\{A, C, G\}$ 的闭包。
+
+**分析**：
+
+不断扫描函数依赖，最后得到闭包是 $\{A,B,C,D,E,F,G\}$
+
+> 2022 填空题 12
+> 函数依赖集 $S=\{ABD \rightarrow AC, C \rightarrow BE, AD \rightarrow BF, B \rightarrow E\}$ 的最小函数依赖是？
+
+**第一步：右部单属性化 (分解)**
+
+将箭头右边有多个属性的拆解开，并移除平凡依赖（如 $X \rightarrow X$）。
+
+* $ABD \rightarrow AC$ 拆解为：
+* $ABD \rightarrow A$ (平凡依赖，**移除**)
+* $ABD \rightarrow C$ (**保留**)
+
+* $C \rightarrow BE$ 拆解为：
+* $C \rightarrow B$
+* $C \rightarrow E$
+
+
+* $AD \rightarrow BF$ 拆解为：
+* $AD \rightarrow B$
+* $AD \rightarrow F$
+
+* $B \rightarrow E$ (**保留**)
+
+此时暂时的依赖集为：
+$$S_1 = \{ ABD \rightarrow C, C \rightarrow B, C \rightarrow E, AD \rightarrow B, AD \rightarrow F, B \rightarrow E \}$$
+
+**第二步：消除左部冗余属性**
+检查依赖箭头左边是否有不必要的属性。
+
+* **检查 $ABD \rightarrow C$ 中的 B**：
+* 如果不看这条规则，利用剩下的规则看 $AD$ 能否推出 $B$？
+* 观察 $S_1$ 中存在 $AD \rightarrow B$。这意味着只要有 $AD$ 就一定有 $B$。
+* 因此，在规则 $ABD \rightarrow C$ 中，左边的 $B$ 是多余的（因为 $AD \rightarrow B$），可以将 $ABD \rightarrow C$ 简化为 $AD \rightarrow C$**。
+
+* 此时依赖集更新为：
+$$S_2 = \{ \mathbf{AD \rightarrow C}, C \rightarrow B, C \rightarrow E, AD \rightarrow B, AD \rightarrow F, B \rightarrow E \}$$
+
+**第三步：消除冗余的函数依赖**
+检查是否有依赖可以由其他依赖推导出来（利用传递性）。
+
+* **检查 $C \rightarrow E$**：
+* 我们有 $C \rightarrow B$ 和 $B \rightarrow E$。根据传递律，$C \rightarrow B \rightarrow E$。
+* 所以 $C \rightarrow E$ 是冗余的，**移除**。
+
+
+* **检查 $AD \rightarrow B$**：
+* 我们有 $AD \rightarrow C$ 和 $C \rightarrow B$。根据传递律，$AD \rightarrow C \rightarrow B$。
+* 所以 $AD \rightarrow B$ 是冗余的，**移除**。
+
+**最终结果：**
+剩下的依赖即为最小函数依赖集：
+1. $AD \rightarrow C$
+2. $AD \rightarrow F$
+3. $C \rightarrow B$
+4. $B \rightarrow E$
+
+---
+
+[[2022规范化大题]]
