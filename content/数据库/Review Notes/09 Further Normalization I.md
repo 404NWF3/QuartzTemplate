@@ -40,7 +40,7 @@
 
 ##### 3.2 第二范式 (2NF - Second Normal Form)
 
-*   **定义:** 一个关系属于 2NF，当且仅当它是 1NF，且 **每一个非主键字段 (Non-key field) 都不可约地依赖于主键 (Irreducibly dependent on the primary key)**。
+*   **定义:** 一个关系属于 2NF，当且仅当它是 1NF，且 **每一个非主属性 (Non-key field) 都不可约地依赖于主键 (Irreducibly dependent on the primary key)**。
 *   **解决的问题:** 消除了 **部分函数依赖 (Partial Dependency)** 。
     *   *反例:* 关系 `(Supplier#, Part#, City, Quantity)` 主键是 `(Supplier#, Part#)`。但 `City` 只依赖于 `Supplier#`（主键的一部分），这就是部分依赖。
 *   **处理方法:** 将部分依赖的属性分离出去，形成新的表（投影）。
@@ -89,8 +89,3 @@
     *   规范化并不总是“绝对的好”。虽然它消除了冗余和更新异常，但过度分解会导致查询时需要大量的 Join 操作，影响性能。
     *   在实际设计中，有时会为了性能故意保留冗余（反规范化）。
 
----
-
-[[关系数据理论习题]]
-
-[[2022规范化大题]]
