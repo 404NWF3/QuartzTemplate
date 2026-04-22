@@ -17,13 +17,17 @@
 		   * 对于一般的情况，假设 $T(n) = n \log_2 n$ 对任意 $m$，满足 $m < n$ 成立，代入公式：$T(n) \leq 2T( \frac{n}{2} ) + n \leq 2c\frac{n}{2}\log_2{\frac{n}{2}} + n = cn (\log_2(n)-1) + n \leq cn\log_2 n$ ，只要取 $c \geq 1$ 即可满足条件。所以 $T(n) = O(n\log_2 n)$
 
 -   **主定理（Master Theorem）** 与通用递归树分析
-	- 主定理主要用于求解如下形式的非负整数递归方程：$T(n) = aT(n/b) + \Theta(n^c)$。根据 $r = \frac{a}{b^c}$ 的取值，判断 $T(n)$ 的时间复杂度。$$
+	- 主定理主要用于求解如下形式的非负整数递归方程：$T(n) = aT(n/b) + \Theta(n^c)$。根据 $r = \frac{a}{b^c}$ 的取值，判断 $T(n)$ 的时间复杂度。
+
+$$
 T(n)=\left\{\begin{aligned}
 &\Theta (n^c), \quad& r < 1 \\
 &\Theta (n\log n), \quad& r=1 \\
 &\Theta (n^{\log_b a}),  \quad& r > 1
 \end{aligned}\right.
-$$	- 其中各参数的定义与限制条件如下：
+$$
+
+- 其中各参数的定义与限制条件如下：
 		*   **$a \ge 1$**：代表每次递归划分出的**子问题数量**，也即递归树的分支因子（branching factor）。
 		*   **$b \ge 2$**：代表每次递归时**子问题规模缩小的比例**。
 		*   **$c \ge 0$**：代表将问题分解以及合并子问题解所需要的**工作量阶数**（即 $f(n) = \Theta(n^c)$）。
